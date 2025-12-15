@@ -29,6 +29,15 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
+// Animação de entrada do header
+gsap.to('.header', {
+  opacity: 1,
+  y: 0,
+  duration: 1,
+  delay: 0.1,
+  ease: 'power3.out',
+});
+
 // Animação inicial do logo no hero
 gsap.to('.hero-logo', {
   opacity: 1,
@@ -144,5 +153,25 @@ heroTimeline.to('.hero-stats', {
   duration: 0.3,
   ease: 'power2.in',
 }, 0.3);
+
+// Scroll horizontal das imagens
+const imagesTrack = document.querySelector('.images-track');
+
+if (imagesTrack) {
+  const imageItems = document.querySelectorAll('.image-item');
+  const totalWidth = (imageItems.length - 1) * (window.innerWidth * 0.8 + 32); // 80vw + gap
+  
+  gsap.to(imagesTrack, {
+    x: -totalWidth,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.images-section',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1,
+      pin: '.images-container',
+    }
+  });
+}
 
 console.log('Fluir inicializado');
