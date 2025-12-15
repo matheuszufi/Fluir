@@ -172,6 +172,29 @@ if (imagesTrack) {
       pin: '.images-container',
     }
   });
+
+  // Animações de entrada para o conteúdo de cada imagem
+  imageItems.forEach((item, index) => {
+    const content = item.querySelector('.image-content');
+    
+    if (content) {
+      // Calcular o momento que cada imagem fica visível
+      const progress = index / (imageItems.length - 1);
+      const scrollStart = `${progress * 25}%`;
+      const scrollEnd = `${progress * 75 + 15}%`;
+
+      gsap.to(content, {
+        opacity: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.images-section',
+          start: scrollStart,
+          end: scrollEnd,
+          scrub: 1,
+        }
+      });
+    }
+  });
 }
 
 console.log('Fluir inicializado');
