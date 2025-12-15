@@ -1,0 +1,298 @@
+@font-face {
+  font-family: 'Garet';
+  src: url('/src/fonts/Garet.woff2') format('woff2'),
+       url('/src/fonts/Garet.woff') format('woff'),
+       url('/src/fonts/Garet.ttf') format('truetype'),
+       url('/src/fonts/Garet.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Garet';
+  src: url('/src/fonts/Garet-Bold.woff2') format('woff2'),
+       url('/src/fonts/Garet-Bold.woff') format('woff'),
+       url('/src/fonts/Garet-Bold.ttf') format('truetype'),
+       url('/src/fonts/Garet-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KASTROO';
+  src: url('/fonts/KASTROO.woff') format('woff'),
+       url('/fonts/KASTROO.ttf') format('truetype'),
+       url('/fonts/KASTROO.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Adelia';
+  src: url('/fonts/adelia.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-primary: rgb(3, 39, 88);
+  --color-white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Garet', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--color-white);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(140deg, rgba(3, 39, 88, 1), rgba(3, 39, 88, 0.7));
+  padding: 1.5rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.header-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Garet', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}
+
+/* Estado do header quando scrolled */
+.header.scrolled {
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  border-radius: 1rem;
+  padding: 1rem 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.header.scrolled .header-container {
+  max-width: 1400px;
+  padding: 0 1.5rem;
+}
+
+.header.scrolled .logo {
+  font-size: 1.5rem;
+}
+
+.header.scrolled .nav a {
+  font-size: 0.9rem;
+}
+
+.hero-wrapper {
+  height: 300vh;
+  position: relative;
+}
+
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('/images/bghero7.jpg');
+  /* background: linear-gradient(to bottom, #a3a3a3, #ffffff); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-sticky::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 4rem 4rem;
+  z-index: 2;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-logo {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  /* margin-top: 80px; */
+  /* margin-bottom: 2rem; */
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.hero-text {
+  max-width: 90%;
+  /* margin-top: 120px; */
+  /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); */
+
+}
+
+.hero-title {
+  font-family: 'Garet', sans-serif;
+  /* text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); */
+  font-size: 7rem;
+  font-weight: 700;
+
+  margin-bottom: 1rem;
+  background: linear-gradient(125deg, rgb(255, 255, 255), rgb(223, 223, 223));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  transform: translateY(30px);
+  line-height: 0.75;
+}
+
+.bim-text {
+  font-family: 'KASTROO', sans-serif;
+  
+  font-size: 9rem;
+  line-height: 0;
+    background: linear-gradient(125deg, rgba(3, 38, 88, 1), rgba(3, 38, 88, 0.75));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 20px;
+  
+}
+
+.hero-subtitle {
+  font-family: 'Garet', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  /* text-transform: uppercase; */
+  font-weight: 400;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  align-self: flex-start;
+  text-align: left;
+}
+
+.hero-stats {
+  /* margin-top: 2rem; */
+  font-family: 'Garet', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  position: relative;
+  height: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stat-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.stat-item.active {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    gap: 1rem;
+  }
+  
+  .nav a {
+    font-size: 0.9rem;
+  }
+  
+  .header.scrolled {
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .hero-logo {
+    max-width: 200px;
+  }
+}
+
+

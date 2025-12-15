@@ -1,0 +1,18 @@
+{
+  "name": "fluir",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Site responsivo com scroll-driven animations",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.0.42"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11"
+  }
+}
