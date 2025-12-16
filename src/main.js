@@ -258,6 +258,34 @@ if (diferencialItems.length > 0) {
       }
     );
   }
+  
+  // Animação do capacete após a linha divisora
+  const capacete = document.querySelector('.capacete-image');
+  if (capacete) {
+    gsap.set(capacete, { x: '100vw', opacity: 0 });
+    
+    gsap.fromTo(capacete,
+      { x: '100vw', opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: '.diferenciais-section',
+          start: 'top+=78% top',
+          end: 'top+=95% top',
+          scrub: 1,
+        }
+      }
+    );
+    
+    // Manter o capacete visível após a animação
+    ScrollTrigger.create({
+      trigger: '.diferenciais-section',
+      start: 'top+=95% top',
+      onEnter: () => gsap.set(capacete, { x: 0, opacity: 1 }),
+    });
+  }
 }
 
 console.log('Fluir inicializado');
