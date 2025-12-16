@@ -415,7 +415,7 @@ box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.2);
   right: 0rem;
   width: auto;
   max-width: 800px;
-  z-index: 0;
+  z-index: 10;
   opacity: 0;
   /* backdrop-filter: drop-shadow(4px 40px 4px rgba(0, 0, 0, 0.4)); */
   transform: translateX(100vw);
