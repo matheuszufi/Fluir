@@ -161,6 +161,19 @@ if (imagesTrack) {
   const imageItems = document.querySelectorAll('.image-item');
   const totalWidth = (imageItems.length - 1) * (window.innerWidth * 0.8 + 32); // 80vw + gap
   
+  // Animação de entrada do título "Serviços"
+  gsap.to('.services-title', {
+    opacity: 1,
+    y: -30,
+    duration: 1.2,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.images-section',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    }
+  });
+  
   gsap.to(imagesTrack, {
     x: -totalWidth,
     ease: 'none',
@@ -194,6 +207,40 @@ if (imagesTrack) {
         }
       });
     }
+  });
+}
+
+// Animações sequenciais para os diferenciais
+const diferencialItems = document.querySelectorAll('.diferencial-item');
+
+if (diferencialItems.length > 0) {
+  diferencialItems.forEach((item, index) => {
+    const totalItems = diferencialItems.length;
+    const startProgress = (index / totalItems) * 100;
+    const endProgress = ((index + 0.8) / totalItems) * 100;
+
+    gsap.to(item, {
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.diferenciais-section',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+        onUpdate: (self) => {
+          const progress = self.progress * 100;
+          if (progress >= startProgress && progress <= endProgress) {
+            const itemProgress = (progress - startProgress) / (endProgress - startProgress);
+            gsap.to(item, { opacity: itemProgress, y: 30 - (itemProgress * 30), duration: 0 });
+          } else if (progress > endProgress) {
+            gsap.to(item, { opacity: 1, y: 0, duration: 0 });
+          } else {
+            gsap.to(item, { opacity: 0, y: 30, duration: 0 });
+          }
+        }
+      }
+    });
   });
 }
 
