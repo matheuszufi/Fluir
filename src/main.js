@@ -214,34 +214,50 @@ if (imagesTrack) {
 const diferencialItems = document.querySelectorAll('.diferencial-item');
 
 if (diferencialItems.length > 0) {
+  // Garantir estado inicial
+  gsap.set(diferencialItems, { opacity: 0, y: 30 });
+  
   diferencialItems.forEach((item, index) => {
     const totalItems = diferencialItems.length;
-    const startProgress = (index / totalItems) * 100;
-    const endProgress = ((index + 0.8) / totalItems) * 100;
+    const startPercent = (index / totalItems) * 100;
+    const endPercent = ((index + 0.8) / totalItems) * 100;
 
-    gsap.to(item, {
-      opacity: 1,
-      y: 0,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.diferenciais-section',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress * 100;
-          if (progress >= startProgress && progress <= endProgress) {
-            const itemProgress = (progress - startProgress) / (endProgress - startProgress);
-            gsap.to(item, { opacity: itemProgress, y: 30 - (itemProgress * 30), duration: 0 });
-          } else if (progress > endProgress) {
-            gsap.to(item, { opacity: 1, y: 0, duration: 0 });
-          } else {
-            gsap.to(item, { opacity: 0, y: 30, duration: 0 });
-          }
+    gsap.fromTo(item, 
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.diferenciais-section',
+          start: `top+=${startPercent}% top`,
+          end: `top+=${endPercent}% top`,
+          scrub: true,
         }
       }
-    });
+    );
   });
+  
+  // Animação da linha divisora após os tópicos
+  const divider = document.querySelector('.diferenciais-divider');
+  if (divider) {
+    gsap.set(divider, { width: 0, opacity: 0 });
+    
+    gsap.fromTo(divider,
+      { width: 0, opacity: 0 },
+      {
+        width: '80%',
+        opacity: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.diferenciais-section',
+          start: 'top+=65% top',
+          end: 'top+=75% top',
+          scrub: true,
+        }
+      }
+    );
+  }
 }
 
 console.log('Fluir inicializado');
