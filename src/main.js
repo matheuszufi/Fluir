@@ -288,4 +288,36 @@ if (diferencialItems.length > 0) {
   }
 }
 
+// Animações para as imagens de projetos
+const projetoImages = document.querySelectorAll('.projetos-grid img');
+
+if (projetoImages.length > 0) {
+  const projetosTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.projetos-section',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1,
+      pin: '.projetos-container',
+    }
+  });
+
+  projetoImages.forEach((img, index) => {
+    const isGif = img.src.includes('.gif');
+    const finalOpacity = isGif ? 1 : 0.3;
+    const startTime = index * 0.04; // Espaçamento entre as animações
+    
+    projetosTimeline.fromTo(img,
+      { opacity: 0, x: '100vw' },
+      {
+        opacity: finalOpacity,
+        x: 0,
+        duration: 0.04,
+        ease: 'power2.out',
+      },
+      startTime
+    );
+  });
+}
+
 console.log('Fluir inicializado');
